@@ -1,0 +1,21 @@
+:root{
+    --primary-color: #1E375A;
+    --secondary-color: #61788C;
+    --color-button: #04B2D9;
+    --color-hover: #2364d2;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 62.5%;
+}
+
+.inactive {
+    display: none;
+}
