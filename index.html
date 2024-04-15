@@ -17,14 +17,32 @@
 <body>
     <nav>
         <div class="menu__movil">
-            <img src="./icons/menu_icon.svg" alt="">
-            <span class="logo">MoviesPallooza</span>
-            <img src="./icons/glass_icon.svg" alt="">
-            <ul class="menu__links">
-                <li><a href="">Home</a></li>
-                <li><a href="">Login</a></li>
-                <li><a href="">Gender</a></li>
-            </ul>
+            <div class="menu__icons">
+                <img src="./icons/menu_icon.svg" alt="" id="icon-menu">
+                <span class="logo">MoviesPallooza</span>
+                <img src="./icons/glass_icon.svg" alt="">
+            </div>
+            <div class="menu__links">
+                <div>
+                    <img src="./icons/close_icon.svg" id="icon-menuClose" alt="">
+                </div>
+                
+                <ul class="has-submenu">
+                    <li><img src="./icons/home_icon.svg" alt=""><a href="">Home</a></li>
+                    <li><img src="./icons/user_icon.svg" alt=""><a href="">Login</a></li>
+                    <li>
+                        <img src="./icons/list_icon.svg" alt="">
+                        <a href="">Gender</a>
+                    </li>
+                </ul>
+                <ul class="submenu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Adventure</a></li>
+                    <li><a href="#">Sci-Fi</a></li>
+                    <li><a href="#">Horror</a></li>
+                </ul>
+            </div>
+
         </div>
     </nav>
     <script type="module" src="./src/main.js"></script>
