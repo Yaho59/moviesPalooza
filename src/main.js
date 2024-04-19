@@ -1,4 +1,5 @@
 import { API_KEY } from "./key.js";
+import * as module from "./node.js"
 
 
 // conexiones a la API
@@ -12,11 +13,12 @@ const options = {
 };
 
 // Tendencias
-async function getTrendingMoviesPreview() {
-    const trendingMovies = document.querySelector('.container__movies');
+export async function getTrendingMoviesPreview() {
     
     const response = await fetch(`${API}trending/movie/day?language=en-US`, options);
     const data = await response.json();
+
+    module.trendingMovies.innerHTML = '';
 
     data.results.forEach(movie => {
         const movieCard = document.createElement('div');
@@ -31,55 +33,49 @@ async function getTrendingMoviesPreview() {
         titleMovie.textContent = movie.original_title;
 
         movieCard.append(movieImg, titleMovie);
-        trendingMovies.append(movieCard);
+        module.trendingMovies.append(movieCard);
     });
 }
-getTrendingMoviesPreview();
 
 // Generos
-const submenu = document.querySelector('.submenu');
-async function getGenresMovies() {
+
+export async function getGenresMovies() {
 
     const response = await fetch(`${API}genre/movie/list?language=en`, options);
     const data = await response.json();
-
+    module.submenu.innerHTML = '';
     data.genres.forEach(genre => {
 
         const li = document.createElement('li');
 
-        const a = document.createElement('a');
+        const a = document.createElement('p');
         a.textContent = genre.name;
+        a.addEventListener('click', ()=>{
+            location.hash =`#category=${genre.id}-${genre.name}`
+        });
 
         li.append(a);
-        submenu.appendChild(li);
-
+        module.submenu.appendChild(li);
 
     });
 }
-getGenresMovies()
-
-
 
 
 // Cambios de los elementos HTML en el DOM
-const menu = document.querySelector('#icon-menu');
-const contentMenu = document.querySelector('.menu__links');
-const menuClose = document.querySelector('#icon-menuClose');
-const menuGenre = document.querySelector('#menugenre');
 
 document.addEventListener('DOMContentLoaded', function() {
-    contentMenu.classList.add('inactive');
-    submenu.classList.add('inactive');
+    module.contentMenu.classList.add('inactive');
+    module.submenu.classList.add('inactive');
  });
 
-menu.addEventListener('click', function () {
-    contentMenu.classList.toggle('inactive');
+module.menu.addEventListener('click', function () {
+    module.contentMenu.classList.toggle('inactive');
 });
 
-menuClose.addEventListener('click', function () {
-    contentMenu.classList.add('inactive');
+module.menuClose.addEventListener('click', function () {
+    module.contentMenu.classList.add('inactive');
 });
 
-menuGenre.addEventListener('click', function() {
-    submenu.classList.toggle('inactive');
+module.menuGenre.addEventListener('click', function() {
+    module.submenu.classList.toggle('inactive');
 });

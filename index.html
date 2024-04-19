@@ -20,8 +20,9 @@
             <div class="menu__icons">
                 <img src="./icons/menu_icon.svg" alt="" id="icon-menu">
                 <span class="logo">MoviesPallooza</span>
-                <img src="./icons/glass_icon.svg" alt="">
+                <img src="./icons/glass_icon.svg" alt="" id="icon-glass">
             </div>
+
             <div class="menu__links">
                 <div>
                     <img src="./icons/close_icon.svg" id="icon-menuClose" alt="">
@@ -32,7 +33,7 @@
                     <li><img src="./icons/user_icon.svg" alt=""><a href="">Login</a></li>
                     <li>
                         <img src="./icons/list_icon.svg" alt="" id="menugenre">
-                        <a href="">Gender</a>
+                        <a href="#">Gender</a>
                     </li>
                 </ul>
                 <ul class="submenu">
@@ -40,7 +41,30 @@
                 </ul>
             </div>
 
+
         </div>
+        <div class="content-form">
+            <form id="searchForm" class="header-searchForm">
+                <input type="text" placeholder="Vengadores" />
+                <button id="searchBtn" class="btn">
+                    <?xml version="1.0" ?><svg viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
+                        <title />
+                        <path
+                            d="M20.56,18.44l-4.67-4.67a7,7,0,1,0-2.12,2.12l4.67,4.67a1.5,1.5,0,0,0,2.12,0A1.49,1.49,0,0,0,20.56,18.44ZM5,10a5,5,0,1,1,5,5A5,5,0,0,1,5,10Z"
+                            fill="#495057" />
+                    </svg>
+                </button>
+                <button id="closedBtn" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="#495057">
+                        <path
+                            d="M6.00015 4.58569L12.0002 10.5857L18.0002 4.58569L19.4144 5.99991L13.4144 11.9999L19.4144 17.9999L18.0002 19.4141L12.0002 13.4141L6.00015 19.4141L4.58594 17.9999L10.5859 11.9999L4.58594 5.99991L6.00015 4.58569Z"
+                            fill="#495057" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
     </nav>
 
     <main>
@@ -53,6 +77,7 @@
     </main>
 
     <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/navigation.js"></script>
 </body>
 
 </html>
