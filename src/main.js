@@ -12,29 +12,40 @@ const options = {
     }
 };
 
+// Utils
+function createMovies(movies, container) {
+    container.innerHTML = '';
+
+    movies.forEach(movie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('card__movies');
+        // movieContainer.addEventListener('click', () => {
+        //     location.hash = '#movie=' + movie.id;
+        // });
+
+        const movieImg = document.createElement('img');
+        // movieImg.classList.add('movie-img');
+        movieImg.setAttribute('alt', movie.title);
+        movieImg.setAttribute(
+            'src',
+            'https://image.tmdb.org/t/p/w300' + movie.backdrop_path,
+        );
+        const titleMovie = document.createElement('p');
+        titleMovie.classList.add('trending__TitleMovie')
+        titleMovie.textContent = movie.original_title;
+
+        movieContainer.append(movieImg, titleMovie);
+        container.append(movieContainer);
+    });
+}
+
 // Tendencias
 export async function getTrendingMoviesPreview() {
 
     const response = await fetch(`${API}trending/movie/day?language=en-US`, options);
     const data = await response.json();
-
-    module.trendingMovies.innerHTML = '';
-
-    data.results.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('card__movies');
-
-        const movieImg = document.createElement('img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.src = 'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path;
-
-        const titleMovie = document.createElement('p');
-        titleMovie.classList.add('trending__TitleMovie')
-        titleMovie.textContent = movie.original_title;
-
-        movieCard.append(movieImg, titleMovie);
-        module.trendingMovies.append(movieCard);
-    });
+    const movies = data.results;
+    createMovies(movies, module.trendingMovies);
 }
 
 // Generos
@@ -64,24 +75,8 @@ export async function getGenresMovies() {
 export async function getMoviesByCategory(id) {
     const response = await fetch(`${API}discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`, options);
     const data = await response.json();
-
-    module.listCategory.innerHTML = '';
-
-    data.results.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('card__movies');
-
-        const movieImg = document.createElement('img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.src = 'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path;
-
-        const titleMovie = document.createElement('p');
-        titleMovie.classList.add('trending__TitleMovie');
-        titleMovie.textContent = movie.original_title;
-
-        movieCard.append(movieImg, titleMovie);
-        module.listCategory.append(movieCard);
-    });
+    const movies = data.results;
+    createMovies(movies, module.listCategory);
 }
 
 
