@@ -29,13 +29,29 @@ function navigator() {
 
 function homePage() {
     module.searchFormFind.classList.add('inactive');
-    module.contentTrendingmovies.classList.remove('inactive')
+    module.contentTrendingmovies.classList.remove('inactive');
+    module.contentCategorymovies.classList.add('inactive');
+    module.contentListCategory.classList.add('inactive');
+    module.menuMovil.classList.remove('inactive');
     main.getTrendingMoviesPreview();
     main.getGenresMovies();
 }
 
 function categoriesPage() {
     console.log('categories!!');
+
+    module.menuMovil.classList.add('inactive');
+    module.contentTrendingmovies.classList.add('inactive');
+    module.searchFormFind.classList.add('inactive');
+    module.contentCategorymovies.classList.remove('inactive');
+    module.contentListCategory.classList.remove('inactive');
+    module.contentMenu.classList.add('inactive');
+
+    const [_, categoryData] = location.hash.split('=');
+    const [categoryId, categoryName] = categoryData.split('-');
+
+    main.getMoviesByCategory(categoryId);
+    module.titleCategoryMovie.textContent = categoryName;
 }
 
 function movieDetailsPage() {
@@ -53,6 +69,9 @@ function trendsPage() {
 }
 
 module.iconClose.addEventListener('click', function () {
-   location.hash = '';
-// history.back();
+   location.hash = '#home';
+})
+
+module.iconBack.addEventListener('click', ()=>{
+    location.hash = '#home';
 })
