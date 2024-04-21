@@ -33,8 +33,10 @@ function homePage() {
     module.contentCategorymovies.classList.add('inactive');
     module.contentListCategory.classList.add('inactive');
     module.menuMovil.classList.remove('inactive');
+    module.contentSerie.classList.remove('inactive');
     main.getTrendingMoviesPreview();
     main.getGenresMovies();
+    main.getSeriesPreview();
 }
 
 function categoriesPage() {
@@ -46,6 +48,7 @@ function categoriesPage() {
     module.contentCategorymovies.classList.remove('inactive');
     module.contentListCategory.classList.remove('inactive');
     module.contentMenu.classList.add('inactive');
+    module.contentSerie.classList.add('inactive');
 
     const [_, categoryData] = location.hash.split('=');
     const [categoryId, categoryName] = categoryData.split('-');
@@ -62,6 +65,7 @@ function searchPage() {
     module.menuMovil.classList.add('inactive');
     module.searchFormFind.classList.remove('inactive');
     module.contentTrendingmovies.classList.add('inactive');
+    module.contentSerie.classList.add('inactive');
 }
 
 function trendsPage() {

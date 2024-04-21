@@ -32,9 +32,22 @@ function createMovies(movies, container) {
         );
         const titleMovie = document.createElement('p');
         titleMovie.classList.add('trending__TitleMovie')
-        titleMovie.textContent = movie.original_title;
+        titleMovie.textContent = movie.original_title || movie.name;
 
-        movieContainer.append(movieImg, titleMovie);
+        const content_vote = document.createElement('div');
+        content_vote.classList.add('content_vote');
+
+
+        const iconStar = document.createElement('img');
+        iconStar.src = '../icons/star_icon.svg';
+
+        const vote = document.createElement('span');
+        vote.textContent = `${movie.vote_average}/10`;
+        vote.classList.add('spanVote')
+
+        content_vote.append(vote, iconStar)
+
+        movieContainer.append(movieImg, titleMovie, content_vote);
         container.append(movieContainer);
     });
 }
@@ -45,6 +58,7 @@ export async function getTrendingMoviesPreview() {
     const response = await fetch(`${API}trending/movie/day?language=en-US`, options);
     const data = await response.json();
     const movies = data.results;
+
     createMovies(movies, module.trendingMovies);
 }
 
@@ -61,6 +75,7 @@ export async function getGenresMovies() {
 
         const a = document.createElement('p');
         a.textContent = genre.name;
+        a.style.color = '#61788C'
         a.addEventListener('click', () => {
             location.hash = `#category=${genre.id}-${genre.name}`
         });
@@ -77,6 +92,15 @@ export async function getMoviesByCategory(id) {
     const data = await response.json();
     const movies = data.results;
     createMovies(movies, module.listCategory);
+}
+
+//Series
+
+export async function getSeriesPreview() {
+    const response = await fetch(`${API}tv/top_rated?language=en-US&page=1`, options);
+    const data = await response.json();
+    const movies = data.results;
+    createMovies(movies, module.listSerie);
 }
 
 

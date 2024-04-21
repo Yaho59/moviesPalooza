@@ -20,6 +20,9 @@ export const contentTrendingmovies = document.querySelector('.content__trendingm
 export const contentCategorymovies = document.querySelector('.content__categoriesPreview');
 export const contentListCategory = document.querySelector('.genericList__category');
 export const listCategory = document.querySelector('.movie-container');
+export const contentPopularSeries = document.querySelector('.content__popularSerie');
+export const listSerie = document.querySelector('.container__series');
+export const contentSerie = document.querySelector('.content__popularSerie');
 
 //
 export const titleCategoryMovie = document.querySelector('.category-title');

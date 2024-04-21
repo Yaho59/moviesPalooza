@@ -109,20 +109,19 @@ main {
     padding: 10px;
 }
 
-.trendingMovies__title,
-.categoriesPreview-title {
+.title {
     color: var(--primary-color);
     font-size: 1.6rem;
-   padding-block-end: 15px;
+    padding-block-end: 15px;
 }
 
-.container__movies {
+.container-scroll {
     display: flex;
     gap: 10px;
     height: 260px;
     overflow-x: scroll;
     overflow-y: hidden;
-
+    margin-bottom: 20px;
 }
 
 .card__movies {
@@ -132,12 +131,24 @@ main {
     background-color: white;
 }
 
-.card__movies img {
+.card__movies>img {
     width: 200px;
     height: 150px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.content_vote {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: start;
+    padding-left: 10px;
+}
+
+.spanVote{
+    color: var(--secondary-color);
 }
 
 .trending__TitleMovie,
@@ -162,7 +173,7 @@ main {
     /* padding: 10px; */
 }
 
-.categoriesPreview-list{
+.categoriesPreview-list {
     display: flex;
     align-items: center;
 }
