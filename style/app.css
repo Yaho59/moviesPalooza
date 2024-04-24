@@ -254,6 +254,17 @@ main {
     max-height: 187.5px;
 }
 
+footer {
+    background-color: var(--color-button);
+    padding: 0 10px;
+    color: var(--primary-color);
+    height: 48px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+  }
+
 .inactive {
     display: none;
 }
