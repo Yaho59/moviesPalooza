@@ -19,9 +19,9 @@ function createMovies(movies, container) {
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('card__movies');
-        // movieContainer.addEventListener('click', () => {
-        //     location.hash = '#movie=' + movie.id;
-        // });
+        movieContainer.addEventListener('click', () => {
+            location.hash = '#movie=' + movie.id;
+        });
 
         const movieImg = document.createElement('img');
         // movieImg.classList.add('movie-img');
@@ -42,8 +42,8 @@ function createMovies(movies, container) {
         iconStar.src = '../icons/star_icon.svg';
 
         const vote = document.createElement('span');
-        vote.textContent = `${movie.vote_average}/10`;
-        vote.classList.add('spanVote')
+        vote.textContent = `${movie.vote_average.toFixed(1)}/10`;
+        vote.classList.add('spanVote');
 
         content_vote.append(vote, iconStar)
 
@@ -103,12 +103,84 @@ export async function getSeriesPreview() {
     createMovies(movies, module.listSerie);
 }
 
+// Peliculas por busqueda
+export async function getMoviesBySearch(query) {
+    const response = await fetch(`${API}search/movie?query=${query}&include_adult=true&language=en-US&page=1`, options);
+    const data = await response.json();
+    const movies = data.results;
+    createMovies(movies, module.listCategory);
+}
+
+// Detalles de una pelicula
+export async function getMovieDetail(movieId) {
+    const response = await fetch(`${API}movie/${movieId}?language=en-US`, options);
+    const data = await response.json();
+    const movie = data;
+
+    module.movieDetailCategoriesList.innerHTML = '';
+
+    module.imgDetail.src = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+
+    module.detailTitle.textContent = movie.original_title;
+    module.movieDetailDescrip.textContent = movie.overview;
+    module.movieDetailScore.textContent = movie.vote_average.toFixed(1);
+
+    movie.genres.forEach(genre => {
+
+        const nameCategory = document.createElement('span');
+        nameCategory.textContent = genre.name
+
+        module.movieDetailCategoriesList.append(nameCategory);
+    });
+
+    getRecommendationsMovies(movieId);
+}
+
+// Peliculas relacionadas
+export async function getRecommendationsMovies(movieId) {
+    const response = await fetch(`${API}movie/${movieId}/recommendations?language=en-US&page=1`, options);
+    const data = await response.json();
+    const movies = data.results;
+
+    module.recomendationMovie.innerHTML = '';
+
+    movies.forEach(movie => {
+        const div = document.createElement('div');
+        div.classList.add('movie-container');
+
+        const img = document.createElement('img');
+        img.classList.add('movie-img')
+        img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+
+        div.append(img);
+        module.recomendationMovie.append(div);
+    });
+}
+
+// export async function getSerieDetail(id) {
+//     const response = await fetch(`${API}tv/${id}?language=en-US`, options);
+//     const data = await response.json();
+//     const serie = data;
+
+//     module.detailTitle.textContent = serie.original_name;
+//     module.movieDetailDescrip.textContent = serie.overview;
+//     module.movieDetailScore.textContent = serie.vote_average.toFixed(1);
+
+//     serie.genres.forEach(genre => {
+
+//         const nameCategory = document.createElement('span');
+//         nameCategory.textContent = genre.name
+
+//         module.movieDetailCategoriesList.append(nameCategory);
+//     });
+// }
 
 // Cambios de los elementos HTML en el DOM
 
 document.addEventListener('DOMContentLoaded', function () {
     module.contentMenu.classList.add('inactive');
     module.submenu.classList.add('inactive');
+    module.searchFormFind.classList.add('inactive');
 });
 
 module.menu.addEventListener('click', function () {
@@ -122,3 +194,11 @@ module.menuClose.addEventListener('click', function () {
 module.menuGenre.addEventListener('click', function () {
     module.submenu.classList.toggle('inactive');
 });
+
+module.iconGlass.addEventListener('click', function () {
+    module.searchFormFind.classList.toggle('inactive');
+});
+
+module.searchClose.addEventListener('click', function () {
+    module.searchFormFind.classList.add('inactive');
+})
