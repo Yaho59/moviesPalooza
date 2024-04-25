@@ -36,6 +36,7 @@ function createMovies(movies, container) {
 
         const content_vote = document.createElement('div');
         content_vote.classList.add('content_vote');
+        content_vote.classList.add('flex')
 
 
         const iconStar = document.createElement('img');
@@ -119,7 +120,13 @@ export async function getMovieDetail(movieId) {
 
     module.movieDetailCategoriesList.innerHTML = '';
 
-    module.imgDetail.src = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+    const url = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+    module.imgDetail.src = url;
+    // module.contentImgDetail.style.background = `linear-gradient(
+    //     180deg,
+    //     rgba(0, 0, 0, 0.35) 19.27%,
+    //     rgba(0, 0, 0, 0) 29.17%
+    //   ), url(${url})`;
 
     module.detailTitle.textContent = movie.original_title;
     module.movieDetailDescrip.textContent = movie.overview;

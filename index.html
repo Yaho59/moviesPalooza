@@ -17,7 +17,7 @@
 <body>
     <nav>
         <div class="menu__movil">
-            <div class="menu__icons">
+            <div class="menu__icons flex">
                 <img src="./icons/menu_icon.svg" alt="" id="icon-menu">
                 <span class="logo">MoviesPallooza</span>
                 <img src="./icons/glass_icon.svg" alt="" id="icon-glass">
@@ -31,20 +31,19 @@
                 <ul class="has-submenu">
                     <li><img src="./icons/home_icon.svg" alt=""><a href="">Home</a></li>
                     <li><img src="./icons/user_icon.svg" alt=""><a href="">Login</a></li>
-                    <li>
-                        <img src="./icons/list_icon.svg" alt="" id="menugenre">
-                        <a href="#">Gender</a>
+                    <li id="menugenre">
+                        <img src="./icons/list_icon.svg" alt="">
+                        <p>Gender</p>
                     </li>
                 </ul>
                 <ul class="submenu">
 
                 </ul>
             </div>
-
-
         </div>
+
         <div class="content-form">
-            <form id="searchForm" class="header-searchForm">
+            <form id="searchForm" class="header-searchForm flex">
                 <input type="text" placeholder="Vengadores" />
                 <button id="searchBtn" class="btn">
                     <?xml version="1.0" ?><svg viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +62,6 @@
                 </button>
             </form>
         </div>
-
     </nav>
 
     <main>
@@ -77,7 +75,7 @@
             <h2 class="categoriesPreview-title title">Categorías</h2>
 
 
-            <div class="categoriesPreview-list">
+            <div class="categoriesPreview-list flex">
                 <img src="./icons/back_icon.svg" alt="" id="icon-back"><span class="category-title"></span>
 
             </div>
@@ -102,7 +100,36 @@
 
         <section id="movieDetail" class="content__moviedetails">
             <div class="content-img">
-                <img src="./icons/back_icon.svg" alt="" class="iconbackDetail">
+                <?xml version="1.0" ?>
+                <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
+                    enable-background="new 0 0 32 32" height="24px" version="1.1" viewBox="0 0 32 32" width="24px"
+                    fill="#FFFFFF" class="iconbackDetail" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Guides" />
+                    <g id="Mail" />
+                    <g id="Cloud" />
+                    <g id="Home" />
+                    <g id="Back">
+                        <path
+                            d="M25.002,16c0,0.5522-0.4473,1-1,1H9.8672l4.9629,7.4453c0.3066,0.4595,0.1826,1.0806-0.2773,1.3867   C14.3818,25.9458,14.1895,26,13.999,26c-0.3232,0-0.6406-0.1563-0.833-0.4453L6.7959,16l6.3701-9.5547   c0.3057-0.46,0.9248-0.5845,1.3867-0.2773c0.46,0.3062,0.584,0.9272,0.2773,1.3867L9.8672,15H24.002   C24.5547,15,25.002,15.4478,25.002,16z" />
+                    </g>
+                    <g id="Next" />
+                    <g id="Reload" />
+                    <g id="Buble" />
+                    <g id="Accept" />
+                    <g id="Reject" />
+                    <g id="User" />
+                    <g id="Download" />
+                    <g id="Upload" />
+                    <g id="Camera" />
+                    <g id="Notification" />
+                    <g id="About" />
+                    <g id="Search" />
+                    <g id="Cart" />
+                    <g id="Sound" />
+                    <g id="List" />
+                    <g id="Settings" />
+                </svg>
                 <img src="" alt="" class="imgDetail">
             </div>
             <h1 class="movieDetail-title title">Deadpool</h1>

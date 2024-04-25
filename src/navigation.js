@@ -50,6 +50,7 @@ function homePage() {
     module.contentSerie.classList.remove('inactive');
     module.listMoviesSearch.classList.add('inactive');
     module.contentMovieDetail.classList.add('inactive');
+    module.footer.classList.remove('inactive');
     main.getTrendingMoviesPreview();
     main.getGenresMovies();
     main.getSeriesPreview();
@@ -85,6 +86,7 @@ function movieDetailsPage() {
     module.contentListCategory.classList.add('inactive');
     module.contentMovieDetail.classList.remove('inactive');
     module.searchFormFind.classList.add('inactive');
+    module.footer.classList.add('inactive');
 
     const [_, movieId] = location.hash.split('=');
     main.getMovieDetail(movieId);

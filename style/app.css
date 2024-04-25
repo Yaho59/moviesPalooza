@@ -25,13 +25,16 @@ ul {
     list-style: none;
 }
 
+.flex{
+    display: flex;
+    align-items: center;
+}
+
 /* Estilos del menu movil */
 
 .menu__icons {
     width: 100%;
     height: auto;
-    display: flex;
-    align-items: center;
     justify-content: space-around;
     background-color: #04B2D9;
     padding: 10px 0;
@@ -49,9 +52,7 @@ ul {
     background-color: #FFFFFF;
     border-radius: 100px;
     border: 1px solid #dfe1e5;
-    display: flex;
     justify-content: center;
-    align-items: center;
     margin: 0 auto;
 }
 
@@ -76,7 +77,6 @@ ul {
 
 .menu__links {
     width: 100%;
-    /* height: 100vh; */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@ ul {
     gap: 10px;
 }
 
-.has-submenu li a {
+.has-submenu li a, p{
     color: var(--primary-color);
 }
 
@@ -144,8 +144,6 @@ main {
 }
 
 .content_vote {
-    display: flex;
-    align-items: center;
     flex-direction: row-reverse;
     justify-content: start;
     padding-left: 10px;
@@ -172,11 +170,6 @@ main {
     place-content: center;
 }
 
-.categoriesPreview-list {
-    display: flex;
-    align-items: center;
-}
-
 /* Estilos de detalles de una pelicula */
 .content__moviedetails {
     border-top-left-radius: 16px;
@@ -185,6 +178,7 @@ main {
 }
 
 .content-img {
+    width: 100%;
     position: relative;
 }
 
@@ -192,6 +186,7 @@ main {
     position: absolute;
     left: 10px;
     top: 10px;
+    z-index: 1;
 }
 
 
@@ -199,7 +194,18 @@ main {
     width: 100%;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    /* background-image: linear-gradient(100deg, #000000, #00000020); */
+}
+
+.content-img::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 }
 
 .score {
@@ -261,9 +267,9 @@ footer {
     height: 48px;
     font-size: 1.1rem;
     display: flex;
-    justify-content: space-between ;
+    justify-content: space-between;
     align-items: center;
-  }
+}
 
 .inactive {
     display: none;

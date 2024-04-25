@@ -30,6 +30,7 @@ export const listMoviesSearch = document.querySelector('.genericList__movieSearc
 export const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
 export const contentMovieDetail = document.querySelector('.content__moviedetails');
 export const recomendationMovie = document.querySelector('.relatedMovies-scrollContainer');
+export const contentImgDetail = document.querySelector('.content-img');
 
 //
 export const titleCategoryMovie = document.querySelector('.category-title');
@@ -37,4 +38,5 @@ export const input = document.querySelector('input');
 export const detailTitle = document.querySelector('.movieDetail-title');
 export const movieDetailScore = document.querySelector('.movieDetail-score');
 export const movieDetailDescrip = document.querySelector('.movieDetail-description');
-export const imgDetail = document.querySelector('.imgDetail')
+export const imgDetail = document.querySelector('.imgDetail');
+export const footer = document.querySelector('footer');
