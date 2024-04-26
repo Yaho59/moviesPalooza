@@ -19,8 +19,17 @@ function createMovies(movies, container) {
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('card__movies');
+        // movieContainer.addEventListener('click', () => {
+        //     location.hash = '#serie=' + movie.id;
+        // });
+
         movieContainer.addEventListener('click', () => {
-            location.hash = '#movie=' + movie.id;
+            if (movie.media_type === 'movie') {
+                location.hash = '#movie=' + movie.id;
+            }
+            else{
+                location.hash = '#serie=' + movie.id;
+            }
         });
 
         const movieImg = document.createElement('img');
@@ -50,6 +59,22 @@ function createMovies(movies, container) {
 
         movieContainer.append(movieImg, titleMovie, content_vote);
         container.append(movieContainer);
+    });
+}
+
+function recommendations(movie, container) {
+    module.recomendationMovie.innerHTML = '';
+
+    movie.forEach(movie => {
+        const div = document.createElement('div');
+        div.classList.add('movie-container');
+
+        const img = document.createElement('img');
+        img.classList.add('movie-img')
+        img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+
+        div.append(img);
+        container.append(div);
     });
 }
 
@@ -122,11 +147,6 @@ export async function getMovieDetail(movieId) {
 
     const url = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
     module.imgDetail.src = url;
-    // module.contentImgDetail.style.background = `linear-gradient(
-    //     180deg,
-    //     rgba(0, 0, 0, 0.35) 19.27%,
-    //     rgba(0, 0, 0, 0) 29.17%
-    //   ), url(${url})`;
 
     module.detailTitle.textContent = movie.original_title;
     module.movieDetailDescrip.textContent = movie.overview;
@@ -143,44 +163,52 @@ export async function getMovieDetail(movieId) {
     getRecommendationsMovies(movieId);
 }
 
+
+
 // Peliculas relacionadas
 export async function getRecommendationsMovies(movieId) {
     const response = await fetch(`${API}movie/${movieId}/recommendations?language=en-US&page=1`, options);
     const data = await response.json();
     const movies = data.results;
 
-    module.recomendationMovie.innerHTML = '';
-
-    movies.forEach(movie => {
-        const div = document.createElement('div');
-        div.classList.add('movie-container');
-
-        const img = document.createElement('img');
-        img.classList.add('movie-img')
-        img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-
-        div.append(img);
-        module.recomendationMovie.append(div);
-    });
+    recommendations(movies, module.recomendationMovie);
 }
 
-// export async function getSerieDetail(id) {
-//     const response = await fetch(`${API}tv/${id}?language=en-US`, options);
-//     const data = await response.json();
-//     const serie = data;
+//Detalles de serie
+export async function getSerieDetail(serieId) {
+    const response = await fetch(`${API}tv/${serieId}?language=en-US`, options);
+    const data = await response.json();
+    const serie = data;
 
-//     module.detailTitle.textContent = serie.original_name;
-//     module.movieDetailDescrip.textContent = serie.overview;
-//     module.movieDetailScore.textContent = serie.vote_average.toFixed(1);
+    module.movieDetailCategoriesList.innerHTML = '';
 
-//     serie.genres.forEach(genre => {
+    const url = `https://image.tmdb.org/t/p/w500${serie.poster_path}`;
+    module.imgDetail.src = url;
 
-//         const nameCategory = document.createElement('span');
-//         nameCategory.textContent = genre.name
+    module.detailTitle.textContent = serie.original_name;
+    module.movieDetailDescrip.textContent = serie.overview;
+    module.movieDetailScore.textContent = serie.vote_average;
 
-//         module.movieDetailCategoriesList.append(nameCategory);
-//     });
-// }
+    serie.genres.forEach(genre => {
+
+        const nameCategory = document.createElement('span');
+        nameCategory.textContent = genre.name
+
+        module.movieDetailCategoriesList.append(nameCategory);
+    });
+
+    getRecommendationsSeries(serieId);
+}
+
+// Serie Relacionadas
+
+export async function getRecommendationsSeries(serieId) {
+    const response = await fetch(`${API}tv/${serieId}/recommendations?language=en-US&page=1`, options);
+    const data = await response.json();
+    const movies = data.results;
+
+    recommendations(movies, module.recomendationMovie);
+}
 
 // Cambios de los elementos HTML en el DOM
 

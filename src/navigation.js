@@ -28,7 +28,7 @@ window.addEventListener('hashchange', navigator, false);
 
 function navigator() {
 
-    if (location.hash.startsWith('#trends')) {
+    if (location.hash.startsWith('#serie=')) {
         trendsPage();
     } else if (location.hash.startsWith('#search=')) {
         searchPage();
@@ -107,4 +107,15 @@ function searchPage() {
 
 function trendsPage() {
     console.log('TRENDS!!');
+    module.contentTrendingmovies.classList.add('inactive');
+    module.contentSerie.classList.add('inactive');
+    module.menuMovil.classList.add('inactive');
+    module.contentCategorymovies.classList.add('inactive');
+    module.contentListCategory.classList.add('inactive');
+    module.contentMovieDetail.classList.remove('inactive');
+    module.searchFormFind.classList.add('inactive');
+    module.footer.classList.add('inactive');
+
+    const [_, serieId] = location.hash.split('=');
+    main.getSerieDetail(serieId);
 }
