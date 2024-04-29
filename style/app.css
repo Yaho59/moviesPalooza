@@ -25,7 +25,7 @@ ul {
     list-style: none;
 }
 
-.flex{
+.flex {
     display: flex;
     align-items: center;
 }
@@ -35,9 +35,9 @@ ul {
 .menu__icons {
     width: 100%;
     height: auto;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #04B2D9;
-    padding: 10px 0;
+    padding: 10px;
 
 }
 
@@ -64,6 +64,11 @@ ul {
     border-radius: 100px;
     outline: none;
     font-size: 1.1rem;
+}
+
+#searchForm:hover {
+    box-shadow: 0 1px 6px 0 #20212447;
+    border-color: #dfe1e500;
 }
 
 .content-form {
@@ -95,7 +100,7 @@ ul {
     gap: 10px;
 }
 
-.has-submenu li a, p{
+.has-submenu__link {
     color: var(--primary-color);
 }
 
@@ -105,6 +110,59 @@ ul {
 
 .submenu li a {
     color: var(--secondary-color);
+}
+
+.icon-glassDesktop,
+li {
+    cursor: pointer;
+}
+
+/* Estilos de nav desktop */
+
+.menu__desktop__elements {
+    background-color: #04B2D9;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.menu__desktop li:hover {
+    color: var(--color-hover);
+}
+
+.menu__desktop-links,
+.links {
+    gap: 15px;
+    font-size: 1.0rem;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.links a:first-child {
+    color: #FFFFFF;
+}
+
+.links a:first-child:hover {
+    color: var(--color-hover);
+}
+
+.elements-links {
+    gap: 20px;
+}
+
+.submenu__Desktop {
+    display: none;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute;
+    background-color: #FFFFFF;
+}
+
+.links li:hover .submenu__Desktop {
+    display: flex;
 }
 
 /* Estilos de tendencias */
@@ -133,6 +191,7 @@ main {
     height: 250px;
     border-radius: 10px;
     background-color: white;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .card__movies>img {
@@ -271,6 +330,36 @@ footer {
     align-items: center;
 }
 
+.desktop__contentgenres {
+    background-color: #04B2D9;
+}
+
 .inactive {
     display: none;
+}
+
+@media (min-width: 1023px) {
+    main {
+        padding: 20px;
+    }
+
+    .menu__movil {
+        display: none;
+    }
+
+    .container-scroll {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 240px);
+        gap: 26px;
+        place-content: center;
+        height: auto;
+        overflow-x: hidden;
+        margin-bottom: 40px
+    }
+}
+
+@media (max-width: 1023px) {
+    .menu__desktop {
+        display: none;
+    }
 }

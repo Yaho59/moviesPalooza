@@ -78,6 +78,25 @@ function recommendations(movie, container) {
     });
 }
 
+function createGenres(movies, container) {
+    container.innerHTML = '';
+    movies.forEach(genre => {
+
+        const li = document.createElement('li');
+
+        const a = document.createElement('p');
+        a.textContent = genre.name;
+        a.style.color = '#61788C'
+        a.addEventListener('click', () => {
+            location.hash = `#category=${genre.id}-${genre.name}`
+        });
+
+        li.append(a);
+        container.append(li);
+
+    });
+}
+
 // Tendencias
 export async function getTrendingMoviesPreview() {
 
@@ -90,26 +109,14 @@ export async function getTrendingMoviesPreview() {
 
 // Generos
 
-export async function getGenresMovies() {
+export async function  getGenresMovies() {
 
     const response = await fetch(`${API}genre/movie/list?language=en`, options);
     const data = await response.json();
-    module.submenu.innerHTML = '';
-    data.genres.forEach(genre => {
+    const movie = data.genres;
 
-        const li = document.createElement('li');
-
-        const a = document.createElement('p');
-        a.textContent = genre.name;
-        a.style.color = '#61788C'
-        a.addEventListener('click', () => {
-            location.hash = `#category=${genre.id}-${genre.name}`
-        });
-
-        li.append(a);
-        module.submenu.appendChild(li);
-
-    });
+    createGenres(movie, module.subMenuDesktop);
+    createGenres(movie, module.submenu);
 }
 
 // filtrado por generos
@@ -145,7 +152,7 @@ export async function getMovieDetail(movieId) {
 
     module.movieDetailCategoriesList.innerHTML = '';
 
-    const url = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+    const url = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`;
     module.imgDetail.src = url;
 
     module.detailTitle.textContent = movie.original_title;
@@ -182,7 +189,7 @@ export async function getSerieDetail(serieId) {
 
     module.movieDetailCategoriesList.innerHTML = '';
 
-    const url = `https://image.tmdb.org/t/p/w500${serie.poster_path}`;
+    const url = `https://image.tmdb.org/t/p/w1280${serie.poster_path}`;
     module.imgDetail.src = url;
 
     module.detailTitle.textContent = serie.original_name;

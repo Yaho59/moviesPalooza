@@ -29,11 +29,11 @@
                 </div>
 
                 <ul class="has-submenu">
-                    <li><img src="./icons/home_icon.svg" alt=""><a href="">Home</a></li>
-                    <li><img src="./icons/user_icon.svg" alt=""><a href="">Login</a></li>
+                    <li><img src="./icons/home_icon.svg" alt=""><a href="" class="has-submenu__link">Home</a></li>
+                    <li><img src="./icons/user_icon.svg" alt=""><a href="" class="has-submenu__link">Login</a></li>
                     <li id="menugenre">
                         <img src="./icons/list_icon.svg" alt="">
-                        <p>Gender</p>
+                        <p class="has-submenu__link">Gender</p>
                     </li>
                 </ul>
                 <ul class="submenu">
@@ -42,6 +42,26 @@
             </div>
         </div>
 
+        <div class="menu__desktop">
+            <div class="menu__desktop__elements flex">
+                <div class="elements-links flex">
+                    <span class="logo">MoviesPallooza</span>
+                    <ul class="links flex">
+                        <li><a href="">Home</a></li>
+                        <li>
+                            <p>Gender</p>
+                            <ul class="submenu__Desktop">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="menu__desktop-links flex">
+                    <li><a href="#"></a>sign in</li>
+                    <li><a href="#"></a>sign up</li>
+                    <img src="./icons/glass_icon.svg" alt="" class="icon-glassDesktop">
+                </ul>
+            </div>
+        </div>
         <div class="content-form">
             <form id="searchForm" class="header-searchForm flex">
                 <input type="text" placeholder="Vengadores" />
@@ -65,6 +85,7 @@
     </nav>
 
     <main>
+
         <section class="content__trendingmovies">
             <h2 class="trendingMovies__title title">Trending</h2>
             <div class="container__movies container-scroll">
@@ -150,9 +171,9 @@
 
                 <div class="relatedMovies-scrollContainer">
                     <!-- <div class="movie-container">
-                        <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
-                            alt="Nombre de la película" />
-                    </div> -->
+                            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+                                alt="Nombre de la película" />
+                        </div> -->
                 </div>
             </article>
         </section>

@@ -11,6 +11,8 @@ export const menuGenre = document.querySelector('#menugenre');
 export const iconBack = document.querySelector('#icon-back');
 export const searchClose = document.querySelector('#closedBtn');
 export const backDetail = document.querySelector('.iconbackDetail');
+export const iconSearchDesktop = document.querySelector('.icon-glassDesktop');
+
 
 //buttons
 export const iconGlass = document.querySelector('#icon-glass');
@@ -31,6 +33,7 @@ export const movieDetailCategoriesList = document.querySelector('#movieDetail .c
 export const contentMovieDetail = document.querySelector('.content__moviedetails');
 export const recomendationMovie = document.querySelector('.relatedMovies-scrollContainer');
 export const contentImgDetail = document.querySelector('.content-img');
+export const contentMenuDesktop = document.querySelector('.menu__desktop');
 
 //
 export const titleCategoryMovie = document.querySelector('.category-title');
@@ -40,3 +43,4 @@ export const movieDetailScore = document.querySelector('.movieDetail-score');
 export const movieDetailDescrip = document.querySelector('.movieDetail-description');
 export const imgDetail = document.querySelector('.imgDetail');
 export const footer = document.querySelector('footer');
+export const subMenuDesktop = document.querySelector('.submenu__Desktop');
