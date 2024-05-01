@@ -44,3 +44,4 @@ export const movieDetailDescrip = document.querySelector('.movieDetail-descripti
 export const imgDetail = document.querySelector('.imgDetail');
 export const footer = document.querySelector('footer');
 export const subMenuDesktop = document.querySelector('.submenu__Desktop');
+export const poster = document.querySelector('.smallimg-detail');

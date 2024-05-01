@@ -154,6 +154,7 @@ export async function getMovieDetail(movieId) {
 
     const url = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`;
     module.imgDetail.src = url;
+    module.poster.src = url;
 
     module.detailTitle.textContent = movie.original_title;
     module.movieDetailDescrip.textContent = movie.overview;
@@ -187,10 +188,13 @@ export async function getSerieDetail(serieId) {
     const data = await response.json();
     const serie = data;
 
+    serie.media_type = 'tv'
+
     module.movieDetailCategoriesList.innerHTML = '';
 
     const url = `https://image.tmdb.org/t/p/w1280${serie.poster_path}`;
     module.imgDetail.src = url;
+    module.poster.src = url;
 
     module.detailTitle.textContent = serie.original_name;
     module.movieDetailDescrip.textContent = serie.overview;
