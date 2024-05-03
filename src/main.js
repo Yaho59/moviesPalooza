@@ -19,18 +19,18 @@ function createMovies(movies, container) {
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('card__movies');
-        // movieContainer.addEventListener('click', () => {
-        //     location.hash = '#serie=' + movie.id;
-        // });
-
         movieContainer.addEventListener('click', () => {
-            if (movie.media_type === 'movie') {
-                location.hash = '#movie=' + movie.id;
-            }
-            else{
-                location.hash = '#serie=' + movie.id;
-            }
+            location.hash = '#movie=' + movie.id;
         });
+
+        // movieContainer.addEventListener('click', () => {
+        //     if (movie.media_type === 'movie') {
+        //         location.hash = '#movie=' + movie.id;
+        //     }
+        //     else {
+        //         location.hash = '#serie=' + movie.id;
+        //     }
+        // });
 
         const movieImg = document.createElement('img');
         // movieImg.classList.add('movie-img');
@@ -109,7 +109,7 @@ export async function getTrendingMoviesPreview() {
 
 // Generos
 
-export async function  getGenresMovies() {
+export async function getGenresMovies() {
 
     const response = await fetch(`${API}genre/movie/list?language=en`, options);
     const data = await response.json();
@@ -132,8 +132,45 @@ export async function getMoviesByCategory(id) {
 export async function getSeriesPreview() {
     const response = await fetch(`${API}tv/top_rated?language=en-US&page=1`, options);
     const data = await response.json();
-    const movies = data.results;
-    createMovies(movies, module.listSerie);
+    const series = data.results;
+
+    module.listSerie.innerHTML = ""
+
+    series.forEach(serie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('card__movies');
+        movieContainer.addEventListener('click', () => {
+            location.hash = '#serie=' + serie.id;
+        });
+
+        const movieImg = document.createElement('img');
+        movieImg.setAttribute('alt', serie.title);
+        movieImg.setAttribute(
+            'src',
+            'https://image.tmdb.org/t/p/w300' + serie.backdrop_path,
+        );
+        const titleMovie = document.createElement('p');
+        titleMovie.classList.add('trending__TitleMovie')
+        titleMovie.textContent =  serie.name;
+
+        const content_vote = document.createElement('div');
+        content_vote.classList.add('content_vote');
+        content_vote.classList.add('flex')
+
+
+        const iconStar = document.createElement('img');
+        iconStar.src = '../icons/star_icon.svg';
+
+        const vote = document.createElement('span');
+        vote.textContent = `${serie.vote_average.toFixed(1)}/10`;
+        vote.classList.add('spanVote');
+
+        content_vote.append(vote, iconStar)
+
+        movieContainer.append(movieImg, titleMovie, content_vote);
+        module.listSerie.append(movieContainer);
+
+    });
 }
 
 // Peliculas por busqueda
@@ -141,6 +178,7 @@ export async function getMoviesBySearch(query) {
     const response = await fetch(`${API}search/movie?query=${query}&include_adult=true&language=en-US&page=1`, options);
     const data = await response.json();
     const movies = data.results;
+
     createMovies(movies, module.listCategory);
 }
 
@@ -172,7 +210,6 @@ export async function getMovieDetail(movieId) {
 }
 
 
-
 // Peliculas relacionadas
 export async function getRecommendationsMovies(movieId) {
     const response = await fetch(`${API}movie/${movieId}/recommendations?language=en-US&page=1`, options);
@@ -187,8 +224,6 @@ export async function getSerieDetail(serieId) {
     const response = await fetch(`${API}tv/${serieId}?language=en-US`, options);
     const data = await response.json();
     const serie = data;
-
-    serie.media_type = 'tv'
 
     module.movieDetailCategoriesList.innerHTML = '';
 
@@ -212,7 +247,6 @@ export async function getSerieDetail(serieId) {
 }
 
 // Serie Relacionadas
-
 export async function getRecommendationsSeries(serieId) {
     const response = await fetch(`${API}tv/${serieId}/recommendations?language=en-US&page=1`, options);
     const data = await response.json();
