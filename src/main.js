@@ -13,6 +13,17 @@ const options = {
 };
 
 // Utils
+const lazyLoading = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            console.log({ entry });
+            const url = entry.target.getAttribute('data-src');
+            entry.target.setAttribute('src', url);
+        }
+
+    });
+});
+
 function createMovies(movies, container) {
     container.innerHTML = '';
 
@@ -23,22 +34,18 @@ function createMovies(movies, container) {
             location.hash = '#movie=' + movie.id;
         });
 
-        // movieContainer.addEventListener('click', () => {
-        //     if (movie.media_type === 'movie') {
-        //         location.hash = '#movie=' + movie.id;
-        //     }
-        //     else {
-        //         location.hash = '#serie=' + movie.id;
-        //     }
-        // });
-
         const movieImg = document.createElement('img');
-        // movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
         movieImg.setAttribute(
-            'src',
+            'data-src',
             'https://image.tmdb.org/t/p/w300' + movie.backdrop_path,
         );
+
+        movieImg.addEventListener('error', ()=>{
+            movieImg.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/portafolio-a7ef1.appspot.com/o/error.png?alt=media&token=bbdaf8f1-0c8a-4f59-a72b-c04d82d4efe6')
+        });
+        lazyLoading.observe(movieImg);
+
         const titleMovie = document.createElement('p');
         titleMovie.classList.add('trending__TitleMovie')
         titleMovie.textContent = movie.original_title || movie.name;
@@ -70,8 +77,11 @@ function recommendations(movie, container) {
         div.classList.add('movie-container');
 
         const img = document.createElement('img');
-        img.classList.add('movie-img')
-        img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+        img.classList.add('movie-img');
+
+        img.setAttribute('data-src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`);
+        lazyLoading.observe(img);
+        // img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
 
         div.append(img);
         container.append(div);
@@ -146,12 +156,13 @@ export async function getSeriesPreview() {
         const movieImg = document.createElement('img');
         movieImg.setAttribute('alt', serie.title);
         movieImg.setAttribute(
-            'src',
+            'data-src',
             'https://image.tmdb.org/t/p/w300' + serie.backdrop_path,
         );
+        lazyLoading.observe(movieImg);
         const titleMovie = document.createElement('p');
         titleMovie.classList.add('trending__TitleMovie')
-        titleMovie.textContent =  serie.name;
+        titleMovie.textContent = serie.name;
 
         const content_vote = document.createElement('div');
         content_vote.classList.add('content_vote');
