@@ -16,7 +16,6 @@ const options = {
 const lazyLoading = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            console.log({ entry });
             const url = entry.target.getAttribute('data-src');
             entry.target.setAttribute('src', url);
         }
@@ -24,8 +23,10 @@ const lazyLoading = new IntersectionObserver((entries) => {
     });
 });
 
-function createMovies(movies, container) {
-    container.innerHTML = '';
+function createMovies(movies, container, clean = true) {
+    if (clean) {
+        container.innerHTML = '';
+    }
 
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
@@ -41,7 +42,7 @@ function createMovies(movies, container) {
             'https://image.tmdb.org/t/p/w300' + movie.backdrop_path,
         );
 
-        movieImg.addEventListener('error', ()=>{
+        movieImg.addEventListener('error', () => {
             movieImg.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/portafolio-a7ef1.appspot.com/o/error.png?alt=media&token=bbdaf8f1-0c8a-4f59-a72b-c04d82d4efe6')
         });
         lazyLoading.observe(movieImg);
@@ -135,6 +136,29 @@ export async function getMoviesByCategory(id) {
     const data = await response.json();
     const movies = data.results;
     createMovies(movies, module.listCategory);
+
+    window.addEventListener('scroll', () => getPaginatedMoviesCategory(id));
+}
+
+let page = 1;
+
+export async function getPaginatedMoviesCategory(id) {
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+    } = document.documentElement;
+
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+    if (scrollIsBottom) {
+        page++
+        const response = await fetch(`${API}discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${id}`, options)
+        const data = await response.json();
+        const movie = data.results;
+        createMovies(movie, module.listCategory, false);
+        console.log('ajajaja');
+
+    }
 }
 
 //Series

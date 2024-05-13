@@ -14,7 +14,8 @@ module.iconBack.addEventListener('click', () => {
 });
 
 module.backDetail.addEventListener('click', () => {
-    location.hash = '#home';
+    // location.hash = '#home';
+    location.hash = window.history.back()
 });
 
 function search (e) {
