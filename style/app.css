@@ -30,6 +30,11 @@ ul {
     align-items: center;
 }
 
+#message{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
 /* Estilos del menu movil */
 
 .menu__icons {
@@ -229,6 +234,9 @@ main {
     place-content: center;
 }
 
+.genericList__movieSearch{
+    flex-direction: column;
+}
 /* Estilos de detalles de una pelicula */
 .content__moviedetails {
     border-top-left-radius: 16px;
