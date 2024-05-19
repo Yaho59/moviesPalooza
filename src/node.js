@@ -45,3 +45,4 @@ export const imgDetail = document.querySelector('.imgDetail');
 export const footer = document.querySelector('footer');
 export const subMenuDesktop = document.querySelector('.submenu__Desktop');
 export const poster = document.querySelector('.smallimg-detail');
+export const header = document.querySelector('header');

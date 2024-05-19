@@ -56,6 +56,7 @@ function homePage() {
     module.contentMovieDetail.classList.add('inactive');
     module.footer.classList.remove('inactive');
     module.contentMenuDesktop.classList.remove('inactive');
+    module.header.classList.remove('inactive');
     main.getTrendingMoviesPreview();
     main. getGenresMovies();
     main.getSeriesPreview();
@@ -74,6 +75,7 @@ function categoriesPage() {
     module.listMoviesSearch.classList.add('inactive');
     module.contentMovieDetail.classList.add('inactive');
     module.contentMenuDesktop.classList.add('inactive');
+    module.header.classList.add('inactive');
 
     const [_, categoryData] = location.hash.split('=');
     const [categoryId, categoryName] = categoryData.split('-');
@@ -94,6 +96,7 @@ function movieDetailsPage() {
     module.searchFormFind.classList.add('inactive');
     module.footer.classList.add('inactive');
     module.contentMenuDesktop.classList.add('inactive');
+    module.header.classList.add('inactive');
 
     const [_, movieId] = location.hash.split('=');
     main.getMovieDetail(movieId);
@@ -109,6 +112,7 @@ function searchPage() {
     module.contentMovieDetail.classList.add('inactive');
     module.footer.classList.add('inactive');
     module.contentMenuDesktop.classList.add('inactive');
+    module.header.classList.add('inactive');
 
     const [_, query] = location.hash.split('=');
     main.getMoviesBySearch(query);
@@ -125,6 +129,7 @@ function trendsPage() {
     module.searchFormFind.classList.add('inactive');
     module.footer.classList.add('inactive');
     module.contentMenuDesktop.classList.add('inactive');
+    module.header.classList.add('inactive');
 
     const [_, serieId] = location.hash.split('=');
     main.getSerieDetail(serieId);
